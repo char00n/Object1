@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class User {
     private String nickName;
     private String userPass;
-    private Long sessionId;
     private String userEmail;
     private String securityAnswer;
+    private String fullName;
     private LocalDate userBirthDay;
     private LocalDate characterBirthDay;
     private String userGender;
@@ -17,10 +17,13 @@ public class User {
     public User() {
     }
 
-    public User(String nickName, String userPass, Long sessionId, String userEmail, String securityAnswer, LocalDate userBirthDay, LocalDate characterBirthDay, String userGender, String userCity, String icqNumber) {
+    public User(String nickName, String userPass, String userEmail,
+         String securityAnswer, LocalDate userBirthDay,
+         LocalDate characterBirthDay, String userGender,
+         String userCity, String icqNumber)
+    {
         this.nickName = nickName;
         this.userPass = userPass;
-        this.sessionId = sessionId;
         this.userEmail = userEmail;
         this.securityAnswer = securityAnswer;
         this.userBirthDay = userBirthDay;
@@ -46,14 +49,6 @@ public class User {
         this.userPass = userPass;
     }
 
-    public Long getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(Long sessionId) {
-        this.sessionId = sessionId;
-    }
-
     public String getUserEmail() {
         return userEmail;
     }
@@ -68,6 +63,14 @@ public class User {
 
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public LocalDate getUserBirthDay() {
@@ -115,9 +118,9 @@ public class User {
         return "User{" +
                 "nickName='" + nickName + '\'' +
                 ", userPass='" + userPass + '\'' +
-                ", sessionId=" + sessionId +
                 ", userEmail='" + userEmail + '\'' +
                 ", securityAnswer='" + securityAnswer + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", userBirthDay=" + userBirthDay +
                 ", characterBirthDay=" + characterBirthDay +
                 ", userGender='" + userGender + '\'' +

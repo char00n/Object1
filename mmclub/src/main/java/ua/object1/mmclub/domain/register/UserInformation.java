@@ -1,4 +1,4 @@
-package ua.object1.mmclub.domain;
+package ua.object1.mmclub.domain.register;
 
 import java.time.LocalDate;
 

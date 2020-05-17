@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS mmc_users;
 DROP TABLE IF EXISTS mmc_character;
+DROP TABLE IF EXISTS mmc_users;
 
 CREATE TABLE mmc_users
 (
@@ -21,28 +21,28 @@ CREATE TABLE mmc_character
 (
     char_id SERIAL,
     char_user_id integer not null,
-    char_name varchar(32) not null,
-    char_birth_day date not null,
-    char_gender varchar(1),
-    Character_Money integer DEFAULT 200, /*деньги*/
-    Character_Strength integer DEFAULT 3, /*сила персонажа*/
-    Character_Strength_Total integer DEFAULT 3, /*сила персонажа c учетом вещей*/
-    Character_Endurance integer DEFAULT 3, /*Выносливость (Здоровье=Выносливость*5)*/
-    Character_Accuracy integer DEFAULT 3,/*Точность перса (влияет на крит.удар)*/
-    Character_Accuracy_Total integer DEFAULT 0, /*Точность с уч. вещей перса*/
-    Character_Dexterity integer DEFAULT 3, /*Ловкость перса (влияет на уворот)*/
-    Character_Dexterity_Total integer DEFAULT 0, /*Ловкость перса с уч. вещей*/
+    char_name varchar(32) not null,              /* [MAIN] */
+    char_birth_day date not null,                /* [MAIN] */
+    char_gender varchar(1),                      /* [MAIN] */
+    char_stat_Strength integer DEFAULT 3,        /* [STAT] сила персонажа */
+    char_stat_Strength_Total integer DEFAULT 3,  /* [STAT] сила персонажа c учетом вещей */
+    char_stat_Endurance integer DEFAULT 3,       /* [STAT] Выносливость (Здоровье=Выносливость*5) */
+    char_stat_Accuracy integer DEFAULT 3,        /* [STAT] Точность перса (влияет на крит.удар) */
+    char_stat_Accuracy_Total integer DEFAULT 0,  /* [STAT] Точность с уч. вещей перса */
+    char_stat_Dexterity integer DEFAULT 3,       /* [STAT] Ловкость перса (влияет на уворот) */
+    char_stat_Dexterity_Total integer DEFAULT 0, /* [STAT] Ловкость перса с уч. вещей */
+    char_stat_CurHealth integer DEFAULT 0,       /* [STAT] тек здоровье во время боя */
+    char_stat_MaxHealth integer DEFAULT 20,      /* [STAT] Максимальное здоровье с учетом вещей */
+    char_stat_UnUsed_Points integer DEFAULT 3,   /* [STAT]Неиспользованные очки для распределения в статы (сила, ловкость....) */
     Character_Sword integer DEFAULT 0, /*Мастерство владения мечом*/
     Character_Spear integer DEFAULT 0, /*Мастерство владения копьем*/
     Character_Axe integer DEFAULT 0, /*Мастерство владения Топором*/
     Character_Mace integer DEFAULT 0, /*Мастерство владения Молот,Дубина*/
     Character_Dagger integer DEFAULT 0, /*Мастерство владения Ножом*/
-    Character_CurHealth integer DEFAULT 0, /*тек здоровье во время боя*/
-    Character_MaxHealth integer DEFAULT 20, /*Максимальное здоровье с учетом вещей*/
     Character_Level integer DEFAULT 0, /*УРОВЕНЬ ИГРОКА*/
     Character_Experience integer DEFAULT 0, /*ОПЫТ ИГРОКА*/
     Character_NextExperience integer DEFAULT 10, /*Следующая граничная точка опыта*/
-    Character_UnUsed_Points integer DEFAULT 3, /*Неиспользованные очки для распределения в статы (сила, ловкость....)*/
+    char_Money integer DEFAULT 200, /*деньги*/
     Town integer DEFAULT 0, /*Текущий город перса*/
     Building integer DEFAULT 0, /*текущее положение перса в городе (здание, площадь)*/
     Moving_Type integer DEFAULT 0, /*текущее транспортное средство (корабль, карета)*/

@@ -1,8 +1,9 @@
 package ua.object1.mmclub.dao;
 
-import ua.object1.mmclub.domain.Security;
-import ua.object1.mmclub.domain.User;
-import ua.object1.mmclub.domain.UserInformation;
+import org.apache.commons.lang3.StringUtils;
+import ua.object1.mmclub.domain.register.User;
+import ua.object1.mmclub.domain.register.UserRegistration;
+import ua.object1.mmclub.domain.register.UserInformation;
 
 import java.sql.*;
 
@@ -14,23 +15,19 @@ public class RegistrationDaoImpl implements RegistrationDao {
                     "user_gender, user_city, user_icq_number ) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
-    private static final String INSERT_CHARACTER =
-            " INSERT INTO mmc_character(char_user_id, char_name, char_birth_day, char_gender ) " +
-            " VALUES (?, ?, ?, ?) ";
-
     private static final String SELECT_USER_INFORMATION =
             "SELECT  user_login, user_email, user_full_Name, user_birth_Day, " +
             "   user_gender, user_city, user_icq_number " +
             "FROM mmc_users " +
             "WHERE user_id = ?";
 
-    private static final String SELECT_SECURITY =
+    private static final String SELECT_USER =
             "SELECT user_id " +
             " FROM mmc_users " +
             " WHERE user_login = ? AND user_pass = ?";
 
     @Override
-    public Long saveUser(User user) throws SQLException{
+    public Long saveUser(UserRegistration userRegistration) throws SQLException{
         Long userId = -1L;
 
         try (Connection con = getConnection();
@@ -40,15 +37,15 @@ public class RegistrationDaoImpl implements RegistrationDao {
             int index = 1;
 
             try {
-                stmt.setString(index, user.getNickName());
-                stmt.setString(++index, user.getUserPass());
-                stmt.setString(++index, user.getUserEmail());
-                stmt.setString(++index, user.getSecurityAnswer());
-                stmt.setString(++index, user.getFullName());
-                stmt.setDate(++index, java.sql.Date.valueOf(user.getUserBirthDay()));
-                stmt.setString(++index, user.getUserGender());
-                stmt.setString(++index, user.getUserCity());
-                stmt.setString(++index, user.getIcqNumber());
+                stmt.setString(index, userRegistration.getNickName());
+                stmt.setString(++index, userRegistration.getUserPass());
+                stmt.setString(++index, userRegistration.getUserEmail());
+                stmt.setString(++index, userRegistration.getSecurityAnswer());
+                stmt.setString(++index, userRegistration.getFullName());
+                stmt.setDate(++index, java.sql.Date.valueOf(userRegistration.getUserBirthDay()));
+                stmt.setString(++index, userRegistration.getUserGender());
+                stmt.setString(++index, userRegistration.getUserCity());
+                stmt.setString(++index, userRegistration.getIcqNumber());
 
                 stmt.executeUpdate();
                 // get userId from DB
@@ -58,8 +55,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
                 }
                 gkRs.close();
 
-                saveCharacter(con, user, userId);
-
                 con.commit();
             } catch (SQLException ex) {
                 con.rollback();
@@ -67,28 +62,14 @@ public class RegistrationDaoImpl implements RegistrationDao {
                 throw ex;
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw ex;
         }
 
         return userId;
     }
 
-    private void saveCharacter(Connection con, User user, Long userId) throws SQLException
-    {
-        int index = 1;
-        try (PreparedStatement stmt = con.prepareStatement(INSERT_CHARACTER))
-        {
-            stmt.setLong(index, userId);
-            stmt.setString(++index, user.getNickName());
-            stmt.setDate(++index, java.sql.Date.valueOf(user.getCharacterBirthDay()));
-            stmt.setString(++index, user.getUserGender());
-
-            stmt.executeUpdate();
-        }
-    }
-
-    @Override
-    public UserInformation getUserInformation(Long id) throws SQLException {
+    private UserInformation getUserInformation(Long id) throws SQLException {
         UserInformation information = null;
 
         try (Connection con = getConnection();
@@ -109,18 +90,22 @@ public class RegistrationDaoImpl implements RegistrationDao {
     }
 
     @Override
-    public Security loginUser(String nickName, String password) throws SQLException
+    public User loginUser(String nickName, String password) throws SQLException
     {
-        Security sec = new Security();
+        User user = new User();
+        if (StringUtils.isBlank(nickName) || StringUtils.isBlank(password))
+        {
+            return user;
+        }
 
         try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(SELECT_SECURITY))
+             PreparedStatement stmt = con.prepareStatement(SELECT_USER))
         {
             stmt.setString(1, nickName);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                sec = getSecurity(rs);
+                user = getUser(rs);
             }
 
         } catch (SQLException ex) {
@@ -128,7 +113,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
             throw ex;
         }
 
-        return sec;
+        return user;
     }
 
     private UserInformation getUserInformation(ResultSet rs) throws SQLException {
@@ -144,13 +129,16 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return inform;
     }
 
-    private Security getSecurity(ResultSet rs) throws SQLException {
-        Security sec = new Security();
+    private User getUser(ResultSet rs) throws SQLException {
+        User user = new User();
 
-        sec.setUserID(rs.getLong("user_id"));
-        sec.setLogged(true);
+        user.setUserID(rs.getLong("user_id"));
+        user.setLogged(true);
 
-        return sec;
+        UserInformation information = getUserInformation(user.getUserID());
+        user.setUserInformation(information);
+
+        return user;
     }
 
     private Connection getConnection() throws SQLException {

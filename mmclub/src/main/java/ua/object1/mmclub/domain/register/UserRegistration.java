@@ -1,8 +1,8 @@
-package ua.object1.mmclub.domain;
+package ua.object1.mmclub.domain.register;
 
 import java.time.LocalDate;
 
-public class User {
+public class UserRegistration {
     private String nickName;
     private String userPass;
     private String userEmail;
@@ -14,13 +14,13 @@ public class User {
     private String userCity;
     private String icqNumber;
 
-    public User() {
+    public UserRegistration() {
     }
 
-    public User(String nickName, String userPass, String userEmail,
-         String securityAnswer, LocalDate userBirthDay,
-         LocalDate characterBirthDay, String userGender,
-         String userCity, String icqNumber)
+    public UserRegistration(String nickName, String userPass, String userEmail,
+                            String securityAnswer, LocalDate userBirthDay,
+                            LocalDate characterBirthDay, String userGender,
+                            String userCity, String icqNumber)
     {
         this.nickName = nickName;
         this.userPass = userPass;

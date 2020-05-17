@@ -1,15 +1,12 @@
 package ua.object1.mmclub.dao;
 
-import ua.object1.mmclub.domain.Security;
-import ua.object1.mmclub.domain.User;
-import ua.object1.mmclub.domain.UserInformation;
+import ua.object1.mmclub.domain.register.User;
+import ua.object1.mmclub.domain.register.UserRegistration;
 
 import java.sql.SQLException;
 
 public interface RegistrationDao {
-    Long saveUser(User user) throws SQLException;
+    Long saveUser(UserRegistration userRegistration) throws SQLException;
 
-    UserInformation getUserInformation(Long id) throws SQLException;
-
-    Security loginUser(String nickName, String password) throws SQLException;
+    User loginUser(String nickName, String password) throws SQLException;
 }

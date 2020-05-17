@@ -24,16 +24,17 @@ CREATE TABLE mmc_character
     char_name varchar(32) not null,              /* [MAIN] */
     char_birth_day date not null,                /* [MAIN] */
     char_gender varchar(1),                      /* [MAIN] */
-    char_stat_Strength integer DEFAULT 3,        /* [STAT] сила персонажа */
-    char_stat_Strength_Total integer DEFAULT 3,  /* [STAT] сила персонажа c учетом вещей */
-    char_stat_Endurance integer DEFAULT 3,       /* [STAT] Выносливость (Здоровье=Выносливость*5) */
-    char_stat_Accuracy integer DEFAULT 3,        /* [STAT] Точность перса (влияет на крит.удар) */
-    char_stat_Accuracy_Total integer DEFAULT 0,  /* [STAT] Точность с уч. вещей перса */
-    char_stat_Dexterity integer DEFAULT 3,       /* [STAT] Ловкость перса (влияет на уворот) */
-    char_stat_Dexterity_Total integer DEFAULT 0, /* [STAT] Ловкость перса с уч. вещей */
-    char_stat_CurHealth integer DEFAULT 0,       /* [STAT] тек здоровье во время боя */
-    char_stat_MaxHealth integer DEFAULT 20,      /* [STAT] Максимальное здоровье с учетом вещей */
-    char_stat_UnUsed_Points integer DEFAULT 3,   /* [STAT]Неиспользованные очки для распределения в статы (сила, ловкость....) */
+    char_stat_strength integer DEFAULT 3,        /* [STAT] сила персонажа */
+    char_stat_strength_total integer DEFAULT 3,  /* [STAT] сила персонажа c учетом вещей */
+    char_stat_endurance integer DEFAULT 3,       /* [STAT] Выносливость (Здоровье=Выносливость*5) */
+    char_stat_endurance_total integer DEFAULT 3, /* [-STAT-] Выносливость (Здоровье=Выносливость*5) */
+    char_stat_accuracy integer DEFAULT 3,        /* [STAT] Точность перса (влияет на крит.удар) */
+    char_stat_accuracy_total integer DEFAULT 0,  /* [STAT] Точность с уч. вещей перса */
+    char_stat_dexterity integer DEFAULT 3,       /* [STAT] Ловкость перса (влияет на уворот) */
+    char_stat_dexterity_total integer DEFAULT 0, /* [STAT] Ловкость перса с уч. вещей */
+    char_stat_cur_health integer DEFAULT 0,      /* [STAT] тек здоровье во время боя */
+    char_stat_max_health integer DEFAULT 20,     /* [STAT] Максимальное здоровье с учетом вещей */
+    char_stat_unused_points integer DEFAULT 3,   /* [STAT]Неиспользованные очки для распределения в статы (сила, ловкость....) */
     Character_Sword integer DEFAULT 0, /*Мастерство владения мечом*/
     Character_Spear integer DEFAULT 0, /*Мастерство владения копьем*/
     Character_Axe integer DEFAULT 0, /*Мастерство владения Топором*/

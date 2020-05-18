@@ -1,5 +1,7 @@
 package ua.object1.mmclub.domain.register;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.time.LocalDate;
 
 public class UserInformation {
@@ -82,7 +84,7 @@ public class UserInformation {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("UserInformation{");
+        final StringBuilder sb = new StringBuilder("UserInformation{");
         sb.append("userLogin='").append(userLogin).append('\'');
         sb.append(", userEmail='").append(userEmail).append('\'');
         sb.append(", userFullName='").append(userFullName).append('\'');

@@ -24,6 +24,7 @@ CREATE TABLE mmc_character
     char_name varchar(32) not null,              /* [MAIN] */
     char_birth_day date not null,                /* [MAIN] */
     char_gender varchar(1),                      /* [MAIN] */
+    char_image varchar(30) DEFAULT 'DEFF1',      /* [MAIN] изображения перса*/
     char_stat_strength integer DEFAULT 3,        /* [STAT] сила персонажа */
     char_stat_strength_total integer DEFAULT 3,  /* [STAT] сила персонажа c учетом вещей */
     char_stat_endurance integer DEFAULT 3,       /* [STAT] Выносливость (Здоровье=Выносливость*5) */
@@ -34,37 +35,36 @@ CREATE TABLE mmc_character
     char_stat_dexterity_total integer DEFAULT 0, /* [STAT] Ловкость перса с уч. вещей */
     char_stat_cur_health integer DEFAULT 0,      /* [STAT] тек здоровье во время боя */
     char_stat_max_health integer DEFAULT 20,     /* [STAT] Максимальное здоровье с учетом вещей */
-    char_stat_unused_points integer DEFAULT 3,   /* [STAT]Неиспользованные очки для распределения в статы (сила, ловкость....) */
-    Character_Sword integer DEFAULT 0, /*Мастерство владения мечом*/
-    Character_Spear integer DEFAULT 0, /*Мастерство владения копьем*/
-    Character_Axe integer DEFAULT 0, /*Мастерство владения Топором*/
-    Character_Mace integer DEFAULT 0, /*Мастерство владения Молот,Дубина*/
-    Character_Dagger integer DEFAULT 0, /*Мастерство владения Ножом*/
-    Character_Level integer DEFAULT 0, /*УРОВЕНЬ ИГРОКА*/
-    Character_Experience integer DEFAULT 0, /*ОПЫТ ИГРОКА*/
-    Character_NextExperience integer DEFAULT 10, /*Следующая граничная точка опыта*/
-    char_Money integer DEFAULT 200, /*деньги*/
-    Town integer DEFAULT 0, /*Текущий город перса*/
-    Building integer DEFAULT 0, /*текущее положение перса в городе (здание, площадь)*/
-    Moving_Type integer DEFAULT 0, /*текущее транспортное средство (корабль, карета)*/
-    EndMoving_Time date DEFAULT 'Now' NOT NULL, /*время прибытия в Пункт Назначения*/
-    Character_Disposition integer DEFAULT 0, /*склонность перса*/
-    Character_Clan integer DEFAULT 0, /*клан перса*/
-    Character_Image CHAR(30) DEFAULT 'standart1.gif', /*изображения перса*/
-    Character_MaxWeigth integer DEFAULT 20, /*максимальный вес предметов в рюкзаке*/
-    Helmet_Slot integer DEFAULT 0, /*слот шлема*/
-    Shield_Slot integer DEFAULT 0, /*слот щита*/
-    Weapon_Slot integer DEFAULT 0, /*слот оружия*/
-    Gloves_Slot integer DEFAULT 0, /*слот перчаток*/
-    Shoes_Slot integer DEFAULT 0, /*слот обуви*/
-    Armor_Slot integer DEFAULT 0, /*слот брони*/
-    Necklace_Slot integer DEFAULT 0, /*слот ожерелья*/
-    Ring1_Slot integer DEFAULT 0, /*слот 1 кольца*/
-    Ring2_Slot integer DEFAULT 0, /*слот 2 кольца*/
-    Ring3_Slot integer DEFAULT 0, /*слот 3 кольца*/
-    Ring4_Slot integer DEFAULT 0, /*слот 4 кольца*/
-    Ear_Slot integer DEFAULT 0, /*слот серег*/
-    Belt_Slot integer DEFAULT 0, /*слот пояса*/
+    char_stat_unused_points integer DEFAULT 3,   /* [STAT] Неиспользованные очки для распределения в статы (сила, ловкость....) */
+    char_skill_sword integer DEFAULT 0,          /* [SKILL] Мастерство владения мечом*/
+    char_skill_spear integer DEFAULT 0,          /* [SKILL] Мастерство владения копьем*/
+    char_skill_axe integer DEFAULT 0,            /* [SKILL] Мастерство владения Топором*/
+    char_skill_mace integer DEFAULT 0,           /* [SKILL] Мастерство владения Молот,Дубина*/
+    char_skill_dagger integer DEFAULT 0,         /* [SKILL] Мастерство владения Ножом*/
+    char_exp_level integer DEFAULT 0,            /* [EXP] УРОВЕНЬ ИГРОКА*/
+    char_exp_cur_exp integer DEFAULT 0,          /* [EXP] ОПЫТ ИГРОКА*/
+    char_exp_next_exp integer DEFAULT 10,        /* [EXP] Следующая граничная точка опыта*/
+    char_stuff_money integer DEFAULT 200,        /* [STUFF] деньги*/
+    char_stuff_max_weigth integer DEFAULT 20,    /* [STUFF] максимальный вес предметов в рюкзаке*/
+    char_slot_helmet integer DEFAULT 0,          /* [SLOT] слот шлема*/
+    char_slot_shield integer DEFAULT 0,          /* [SLOT] слот щита*/
+    char_slot_weapon integer DEFAULT 0,          /* [SLOT] слот оружия*/
+    char_slot_gloves integer DEFAULT 0,          /* [SLOT] слот перчаток*/
+    char_slot_shoes integer DEFAULT 0,           /* [SLOT] слот обуви*/
+    char_slot_armor integer DEFAULT 0,           /* [SLOT] слот брони*/
+    char_slot_necklace integer DEFAULT 0,        /* [SLOT] слот ожерелья*/
+    char_slot_ring1 integer DEFAULT 0,           /* [SLOT] слот 1 кольца*/
+    char_slot_ring2 integer DEFAULT 0,           /* [SLOT] слот 2 кольца*/
+    char_slot_ring3 integer DEFAULT 0,           /* [SLOT] слот 3 кольца*/
+    char_slot_ring4 integer DEFAULT 0,           /* [SLOT] слот 4 кольца*/
+    char_slot_ear integer DEFAULT 0,             /* [SLOT] слот серег*/
+    char_slot_belt integer DEFAULT 0,            /* [SLOT] слот пояса*/
+    char_town integer DEFAULT 0, /*Текущий город перса*/
+    char_building integer DEFAULT 0, /*текущее положение перса в городе (здание, площадь)*/
+    char_moving_type integer DEFAULT 0, /*текущее транспортное средство (корабль, карета)*/
+    char_end_moving_time date DEFAULT 'Now' NOT NULL, /*время прибытия в Пункт Назначения*/
+    char_disposition integer DEFAULT 0, /*склонность перса*/
+    char_clan integer DEFAULT 0, /*клан перса*/
     PRIMARY KEY (char_id),
     FOREIGN KEY (char_user_id) REFERENCES mmc_users(user_id) ON DELETE RESTRICT
 );

@@ -1,5 +1,7 @@
 package ua.object1.mmclub.domain.register;
 
+import ua.object1.mmclub.domain.enums.Gender;
+
 import java.time.LocalDate;
 
 public class UserRegistration {
@@ -10,27 +12,11 @@ public class UserRegistration {
     private String fullName;
     private LocalDate userBirthDay;
     private LocalDate characterBirthDay;
-    private String userGender;
+    private Gender userGender;
     private String userCity;
     private String icqNumber;
 
     public UserRegistration() {
-    }
-
-    public UserRegistration(String nickName, String userPass, String userEmail,
-                            String securityAnswer, LocalDate userBirthDay,
-                            LocalDate characterBirthDay, String userGender,
-                            String userCity, String icqNumber)
-    {
-        this.nickName = nickName;
-        this.userPass = userPass;
-        this.userEmail = userEmail;
-        this.securityAnswer = securityAnswer;
-        this.userBirthDay = userBirthDay;
-        this.characterBirthDay = characterBirthDay;
-        this.userGender = userGender;
-        this.userCity = userCity;
-        this.icqNumber = icqNumber;
     }
 
     public String getNickName() {
@@ -89,11 +75,11 @@ public class UserRegistration {
         this.characterBirthDay = characterBirthDay;
     }
 
-    public String getUserGender() {
+    public Gender getUserGender() {
         return userGender;
     }
 
-    public void setUserGender(String userGender) {
+    public void setUserGender(Gender userGender) {
         this.userGender = userGender;
     }
 

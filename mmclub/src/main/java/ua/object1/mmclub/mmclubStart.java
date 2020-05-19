@@ -3,6 +3,7 @@ package ua.object1.mmclub;
 import ua.object1.mmclub.dao.CharacterDaoImpl;
 import ua.object1.mmclub.dao.RegistrationDaoImpl;
 import ua.object1.mmclub.domain.constants.UtUserRegistration;
+import ua.object1.mmclub.domain.enums.Gender;
 import ua.object1.mmclub.domain.register.User;
 import ua.object1.mmclub.domain.register.UserRegistration;
 import ua.object1.mmclub.domain.character.Character;
@@ -63,7 +64,7 @@ public class mmclubStart {
         userRegistration.setFullName(UtUserRegistration.FULL_NAME_1);
         userRegistration.setUserBirthDay(UtUserRegistration.BIRTH_DAY);
         userRegistration.setCharacterBirthDay(LocalDate.now());
-        userRegistration.setUserGender(UtUserRegistration.GENDER_1);
+        userRegistration.setUserGender(Gender.fromValue(UtUserRegistration.GENDER_1));
         userRegistration.setUserCity(UtUserRegistration.CITY_1);
         userRegistration.setIcqNumber(UtUserRegistration.ICQ_1);
 

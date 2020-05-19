@@ -1,6 +1,7 @@
 package ua.object1.mmclub.dao;
 
 import org.apache.commons.lang3.StringUtils;
+import ua.object1.mmclub.domain.enums.Gender;
 import ua.object1.mmclub.domain.register.User;
 import ua.object1.mmclub.domain.register.UserRegistration;
 import ua.object1.mmclub.domain.register.UserInformation;
@@ -43,7 +44,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
                 stmt.setString(++index, userRegistration.getSecurityAnswer());
                 stmt.setString(++index, userRegistration.getFullName());
                 stmt.setDate(++index, java.sql.Date.valueOf(userRegistration.getUserBirthDay()));
-                stmt.setString(++index, userRegistration.getUserGender());
+                stmt.setString(++index, userRegistration.getUserGender().getValue());
                 stmt.setString(++index, userRegistration.getUserCity());
                 stmt.setString(++index, userRegistration.getIcqNumber());
 
@@ -122,7 +123,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         inform.setUserEmail(rs.getString("user_email"));
         inform.setUserFullName(rs.getString("user_full_name"));
         inform.setUserBirthDay(rs.getDate("user_birth_Day").toLocalDate());
-        inform.setUserGender(rs.getString("user_gender"));
+        inform.setUserGender(Gender.fromValue(rs.getString("user_gender")));
         inform.setUserCity(rs.getString("user_city"));
         inform.setUserIcqNumber(rs.getString("user_icq_number"));
 

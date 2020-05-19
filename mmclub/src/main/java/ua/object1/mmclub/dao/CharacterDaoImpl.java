@@ -3,6 +3,7 @@ package ua.object1.mmclub.dao;
 import ua.object1.mmclub.domain.character.*;
 import ua.object1.mmclub.domain.character.Character;
 import ua.object1.mmclub.domain.constants.DbCharacter;
+import ua.object1.mmclub.domain.enums.Gender;
 import ua.object1.mmclub.domain.register.User;
 import ua.object1.mmclub.domain.register.UserRegistration;
 
@@ -67,7 +68,7 @@ public class CharacterDaoImpl implements CharacterDao
         character.setUser(user);
         character.setName(rs.getString(DbCharacter.NAME));
         character.setBirthDay(rs.getDate(DbCharacter.DT).toLocalDate());
-        character.setGender(rs.getString(DbCharacter.GENDER));
+        character.setGender(Gender.fromValue(rs.getString(DbCharacter.GENDER)));
         character.setImage(rs.getString(DbCharacter.IMAGE));
         character.setTown(rs.getInt(DbCharacter.TOWN));
         character.setBuilding(rs.getInt(DbCharacter.BUILDING));
@@ -168,7 +169,7 @@ public class CharacterDaoImpl implements CharacterDao
             stmt.setLong(index, userId);
             stmt.setString(++index, userRegistration.getNickName());
             stmt.setDate(++index, java.sql.Date.valueOf(userRegistration.getCharacterBirthDay()));
-            stmt.setString(++index, userRegistration.getUserGender());
+            stmt.setString(++index, userRegistration.getUserGender().getValue());
 
             stmt.executeUpdate();
         }

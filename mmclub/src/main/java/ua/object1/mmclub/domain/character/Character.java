@@ -1,5 +1,6 @@
 package ua.object1.mmclub.domain.character;
 
+import ua.object1.mmclub.domain.enums.Gender;
 import ua.object1.mmclub.domain.register.User;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ public class Character
     private User user;
     private String name;
     private LocalDate birthDay;
-    private String gender;
+    private Gender gender;
     private String image;
     private int town;
     private int building;
@@ -48,11 +49,11 @@ public class Character
         this.birthDay = birthDay;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

@@ -1,6 +1,6 @@
 package ua.object1.mmclub.domain.register;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import ua.object1.mmclub.domain.enums.Gender;
 
 import java.time.LocalDate;
 
@@ -9,22 +9,13 @@ public class UserInformation {
     String userEmail;
     String userFullName;
     LocalDate userBirthDay;
-    String userGender;
+    Gender userGender;
     String userCity;
     String userIcqNumber;
 
     public UserInformation() {
     }
 
-    public UserInformation(String userLogin, String userEmail, String userFullName, LocalDate userBirthDay, String userGender, String userCity, String userIcqNumber) {
-        this.userLogin = userLogin;
-        this.userEmail = userEmail;
-        this.userFullName = userFullName;
-        this.userBirthDay = userBirthDay;
-        this.userGender = userGender;
-        this.userCity = userCity;
-        this.userIcqNumber = userIcqNumber;
-    }
 
     public String getUserLogin() {
         return userLogin;
@@ -58,11 +49,11 @@ public class UserInformation {
         this.userBirthDay = userBirthDay;
     }
 
-    public String getUserGender() {
+    public Gender getUserGender() {
         return userGender;
     }
 
-    public void setUserGender(String userGender) {
+    public void setUserGender(Gender userGender) {
         this.userGender = userGender;
     }
 
